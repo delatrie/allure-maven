@@ -3,6 +3,9 @@ name: Check gpg key
 permissions: {}
 
 on:
+  push:
+    branches:
+      - 'check'
   workflow_dispatch:
 
 jobs:
