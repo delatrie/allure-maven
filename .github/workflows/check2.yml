@@ -1,0 +1,18 @@
+name: Check gpg key
+
+permissions: {}
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up GPG
+        run: |
+          export GPG_TTY=$(tty)
+          echo -n "${GPG_PRIVATE_KEY}" | base64 --decode | gpg --batch --import
+          gpg --list-keys --keyid-format=long
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
