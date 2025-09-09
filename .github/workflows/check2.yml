@@ -14,7 +14,6 @@ jobs:
     steps:
       - name: Set up GPG
         run: |
-          export GPG_TTY=$(tty)
           echo -n "${GPG_PRIVATE_KEY}" | base64 --decode | gpg --batch --import
           gpg --list-keys --keyid-format=long
         env:
